@@ -1,0 +1,31 @@
+{
+  "name": "notarcount",
+  "version": "0.0.1",
+  "description": "a collection of numbers and strings",
+  "productName": "NotarCount",
+  "cordovaId": "org.cordova.quasar.app",
+  "capacitorId": "",
+  "author": "anxietyangst <bezdnastada@gmail.com>",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "apexcharts": "^3.19.2",
+    "axios": "^0.18.1",
+    "quasar": "^1.0.0",
+    "vue-apexcharts": "^1.5.3"
+  },
+  "devDependencies": {
+    "@quasar/app": "^1.8.7"
+  },
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
+}
