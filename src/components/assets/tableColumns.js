@@ -24,6 +24,12 @@ const tableColumns = [
     field: "translatorCost"
   },
   {
+    name: "totalAmount",
+    align: "center",
+    label: "Цена",
+    field: "totalAmount"
+  },
+  {
     name: "courierCost",
     align: "center",
     label: "Курьер",

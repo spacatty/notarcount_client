@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-      <documentsChart :item="analytics" />
+    <documentsChart :item="listAnalytics" />
   </q-page>
 </template>
 
@@ -12,16 +12,8 @@ export default {
   components: {
     documentsChart
   },
-  data() {
-    return {
-      analytics: []
-    };
-  },
   computed: {
     ...mapGetters({ listAnalytics: "entriesStore/listAnalytics" })
-  },
-  created() {
-    this.analytics = this.listAnalytics;
   }
 };
 </script>

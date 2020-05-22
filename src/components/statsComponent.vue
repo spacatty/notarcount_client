@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <q-virtual-scroll class="statsVirtualScroll" :items="arraysOfWeeks">
+    <q-virtual-scroll class="statsVirtualScroll" :items="listWeeks">
       <template v-slot="{ item, index }">
         <q-item class="q-my-sm" :key="index" v-ripple="{color: item.finished ? 'green' : 'red'}">
           <q-item-section avatar>
@@ -39,7 +39,6 @@ export default {
   components: { wDialogComponentVue, aDialogComponentVue },
   data() {
     return {
-      arraysOfWeeks: [],
       splitterModel: 50,
       carousel: false,
       slide: 1
@@ -66,11 +65,7 @@ export default {
     fmt(item) {
       return new formatedDate(item).fullDate;
     }
-  },
-  created() {
-    this.arraysOfWeeks = this.listWeeks;
-  },
-  
+  }
 };
 </script>
 

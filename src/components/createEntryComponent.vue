@@ -3,7 +3,7 @@
     <q-table
       class="createEntryTable"
       grid
-      :data="tableData"
+      :data="listTableData"
       :columns="columns"
       row-key="id"
       :loading="loading"
@@ -22,7 +22,7 @@
           @click="removeRow"
         />
         <q-space />
-        <q-btn color="primary" flat icon="send" :disable="loading" />
+        <q-btn color="primary" flat icon="send" :disable="loading" @click="sendData" />
       </template>
       <template v-slot:item="props">
         <div class="col-xs-6 q-pa-xs items-center justify-evenly">
@@ -36,7 +36,8 @@
                     <q-select
                       :label="col.label"
                       color="dark"
-                      v-model="props.row[`${col.name}`]"
+                      :value="props.row[`${col.name}`]"
+                      @input="e => mutateComputedData(e, props.rowIndex, col.name)"
                       use-input
                       use-chips
                       hide-dropdown-icon
@@ -56,7 +57,8 @@
                     <q-select
                       :label="col.label"
                       color="dark"
-                      v-model="props.row[`${col.name}`]"
+                      :value="props.row[`${col.name}`]"
+                      @input="e => mutateComputedData(e, props.rowIndex, col.name)"
                       use-input
                       use-chips
                       hide-dropdown-icon
@@ -84,16 +86,18 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import tableColumns from "./assets/tableColumns";
 import emptyEntry from "./assets/emptyEntry";
 import tableMethods from "./assets/tableMethods";
 
 export default {
   name: "createEntryComponent",
-  props: {},
+  computed: {
+    ...mapGetters({ listTableData: "entriesStore/listTableData" })
+  },
   data() {
     return {
-      tableData: [],
       loading: false,
       columns: tableColumns,
       pagination: {
@@ -102,10 +106,15 @@ export default {
     };
   },
   methods: {
-    ...tableMethods,
-  },
-  created() {
-    this.tableData.push(emptyEntry(0, "Партнёр"));
+    ...mapActions({
+      addRow: "entriesStore/addRow",
+      removeRow: "entriesStore/removeRow",
+      sendData: "entriesStore/sendData",
+      changeColValue: "entriesStore/changeColValue"
+    }),
+    mutateComputedData(newValue, rowIndex, colName) {
+      this.changeColValue({ newValue, rowIndex, colName });
+    }
   }
 };
 </script>

@@ -1,13 +1,14 @@
-const emptyEntry = (index, partner) => {
+const emptyEntry = partner => {
   return {
-    id: index,
     partnerName: partner,
     documentsCount: 0,
     notariusCost: 0,
     translatorCost: 0,
     courierCost: 0,
+    revenueAmount: 0,
+    totalAmount: 0,
     manager: 0,
-    seller: 0,
+    seller: 0
   };
 };
 

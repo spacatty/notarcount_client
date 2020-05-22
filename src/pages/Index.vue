@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import createEntryComponent from "components/createEntryComponent";
 import statsComponent from "components/statsComponent";
 import analyticsComponent from "components/analyticsComponent";
@@ -43,8 +44,11 @@ export default {
       tab: "createEntry"
     };
   },
-  created() {
-    this.$store.dispatch("entriesStore/fetchData");
+  methods: {
+    ...mapActions({ fetchData: "entriesStore/fetchData" })
+  },
+  async created() {
+    await this.fetchData();
   }
 };
 </script>
