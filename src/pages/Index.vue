@@ -8,14 +8,21 @@
       </q-tabs>
     </q-header>
     <q-page-container>
-      <q-tab-panels v-model="tab" animated class="flex flex-center">
-        <q-tab-panel class="q-pa-none" name="createEntry">
+      <q-tab-panels
+        v-model="tab"
+        animated
+        swipeable
+        transition-prev="fade"
+        transition-next="fade"
+        class="flex flex-center"
+      >
+        <q-tab-panel class="q-pa-none bg-grey-1" name="createEntry">
           <createEntryComponent />
         </q-tab-panel>
-        <q-tab-panel class="q-pa-none" name="checkEntries">
+        <q-tab-panel class="q-pa-none bg-grey-1" name="checkEntries">
           <statsComponent />
         </q-tab-panel>
-        <q-tab-panel class="q-pa-none" name="analytics">
+        <q-tab-panel class="q-pa-none bg-grey-1" name="analytics">
           <analyticsComponent />
         </q-tab-panel>
       </q-tab-panels>

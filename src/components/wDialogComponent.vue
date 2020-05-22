@@ -61,29 +61,29 @@
             <q-item-section class="flex flex-center" side>
               <div class="row">
                 <q-btn
-                  color="green"
+                  color="primary"
                   flat
                   @click="showDay(day)"
-                >{{day.createdAt.split("/")[1]}} | {{day.entryData.totalData[0].documentsCount < 10 ? `0${day.entryData.totalData[0].documentsCount}` : day.entryData.totalData[0].documentsCount}}</q-btn>
+                >{{fmt(day.createdAt, day.entryData.totalData[0].documentsCount)}}</q-btn>
               </div>
             </q-item-section>
           </q-item>
         </q-list>
-      </q-card-section>
       <q-card-actions align="center">
         <q-btn flat color="primary" label="OK" @click="onOKClick" />
       </q-card-actions>
+      </q-card-section>
     </q-card>
   </q-dialog>
 </template>
 
 <script>
 import tDialogComponent from "./tDIalogComponent";
-import PageIndex from '../pages/Index'
+import formatedDate from "./assets/formatDate";
 
 export default {
   name: "wDialogComponent",
-  components: { tDialogComponent, PageIndex },
+  components: { tDialogComponent },
   data() {
     return {
       days: []
@@ -111,12 +111,16 @@ export default {
     setState() {
       this.days = this.item.weekEntryData;
     },
-    showDay (actualDay) {
-       this.$q.dialog({
+    showDay(actualDay) {
+      this.$q.dialog({
         component: tDialogComponent,
-        // parent: this,
         actualDay
       });
+    },
+    fmt(date, docs) {
+      return `${new formatedDate(date, ".").day} | ${
+        docs < 10 ? `0${docs}` : docs
+      }`;
     }
   }
 };

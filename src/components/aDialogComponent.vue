@@ -10,6 +10,7 @@
 
 <script>
 import VueApexCharts from "vue-apexcharts";
+import formatedDate from './assets/formatDate'
 
 export default {
   name: "aDialogComponent",
@@ -18,7 +19,7 @@ export default {
     return {
       options: {
         chart: {
-          id: "vuechart-example",
+          id: "dialogChart",
           toolbar: {
             show: false
           },
@@ -60,31 +61,15 @@ export default {
       this.$emit("ok");
       this.hide();
     },
-    formatDate(dateItem) {
-      const date = new Date(dateItem);
-      const dateTimeFormat = new Intl.DateTimeFormat("ru", {
-        year: "numeric",
-        month: "short",
-        day: "2-digit"
-      });
-      const [
-        { value: day },
-        ,
-        { value: month },
-        ,
-        { value: year }
-      ] = dateTimeFormat.formatToParts(date);
-      return `${day} ${month}`;
-    },
     setState() {
-      let parsedDays = [];
-      let documentsPerDay = [];
       this.item.weekEntryData.forEach(actualDay => {
-        parsedDays.push(this.formatDate(actualDay.createdAt));
-        documentsPerDay.push(actualDay.entryData.totalData[0].documentsCount);
+        this.options.xaxis.categories.push(
+          new formatedDate(actualDay.createdAt).dayMonthCap
+        );
+        this.series[0].data.push(
+          actualDay.entryData.totalData[0].documentsCount
+        );
       });
-      this.options.xaxis.categories = parsedDays;
-      this.series[0].data = documentsPerDay;
     }
   }
 };

@@ -22,9 +22,25 @@ const tableColumns = [
     align: "center",
     label: "Переводчик",
     field: "translatorCost"
+  },
+  {
+    name: "courierCost",
+    align: "center",
+    label: "Курьер",
+    field: "courierCost"
+  },
+  {
+    name: "manager",
+    align: "center",
+    label: "Менеджер",
+    field: "manager"
+  },
+  {
+    name: "seller",
+    align: "center",
+    label: "Продавец",
+    field: "seller"
   }
 ];
-
-
 
 export default tableColumns;

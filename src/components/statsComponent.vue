@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <q-virtual-scroll style="height: 60vh; width: 40vw;" :items="arraysOfWeeks">
+    <q-virtual-scroll class="statsVirtualScroll" :items="arraysOfWeeks">
       <template v-slot="{ item, index }">
         <q-item class="q-my-sm" :key="index" v-ripple="{color: item.finished ? 'green' : 'red'}">
           <q-item-section avatar>
@@ -12,8 +12,8 @@
             />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ item.periodFrom }}</q-item-label>
-            <q-item-label caption lines="1">{{ item.periodTill }}</q-item-label>
+            <q-item-label>{{ fmt(item.periodFrom) }}</q-item-label>
+            <q-item-label caption lines="1">{{ fmt(item.periodTill) }}</q-item-label>
           </q-item-section>
           <q-item-section avatar>
             <q-fab color="primary" icon="keyboard_arrow_left" direction="left" flat>
@@ -32,6 +32,7 @@
 import { mapGetters } from "vuex";
 import wDialogComponentVue from "./wDialogComponent.vue";
 import aDialogComponentVue from "./aDialogComponent.vue";
+import formatedDate from "./assets/formatDate";
 
 export default {
   name: "statsComponent",
@@ -61,11 +62,15 @@ export default {
         parent: this,
         item
       });
+    },
+    fmt(item) {
+      return new formatedDate(item).fullDate;
     }
   },
   created() {
     this.arraysOfWeeks = this.listWeeks;
-  }
+  },
+  
 };
 </script>
 
