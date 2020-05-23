@@ -1,4 +1,4 @@
-# NotarCount (notarcount)
+# NOTARCOUNT
 
 a collection of numbers and strings
 
