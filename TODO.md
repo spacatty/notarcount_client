@@ -3,8 +3,8 @@
 ## Global:
 * [x] Refactor every component state, delegate to global’s
 * [x] Code down entry registration 
-* [ ] Provide registration with some UI
-    * [ ] Refactor v1 and v2 api’s to compatibility
+* [x] Provide registration with some UI
+    * [x] Refactor v1 and v2 api’s to compatibility
 
 ## Secondary:
 * [ ] Provide registrable suggestions
@@ -12,6 +12,7 @@
 
 ## Tertiary:
 * [ ] Fill out occupation whitespace
+* [ ] Local storage user data caching
 
 ## Feature:
 * [ ] Delegate linear stats view to timeline

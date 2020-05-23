@@ -5,10 +5,6 @@
 <script>
 
 export default {
-  name: 'MainLayout',
-  data () {
-    return {
-    }
-  }
+  name: 'MainLayout'
 }
 </script>

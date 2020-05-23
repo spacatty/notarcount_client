@@ -48,7 +48,7 @@ export default {
   methods: {
     show() {
       this.$refs.dialog.show();
-      this.setState();
+      this.setData();
     },
     hide() {
       this.$refs.dialog.hide();
@@ -61,7 +61,7 @@ export default {
       this.$emit("ok");
       this.hide();
     },
-    setState() {
+    setData() {
       this.item.weekEntryData.forEach(actualDay => {
         this.options.xaxis.categories.push(
           new formatedDate(actualDay.createdAt).dayMonthCap

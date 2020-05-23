@@ -1,9 +1,18 @@
 import axios from "axios";
-import postEntry from "../../components/assets/entryMarkup";
+import API from "./assets/api";
+import { Loading } from "quasar";
 
-export const fetchData = async ({ commit }) => {
-  const res = await axios.get("http://localhost:8080/entries/normalized");
-  commit("setData", res.data);
+export const fetchData = ({ commit }) => {
+  Loading.show();
+  axios
+    .get(API.getEnreies)
+    .then(res => {
+      commit("setData", res.data);
+      Loading.hide();
+    })
+    .catch(err => {
+      commit("throwError", err);
+    });
 };
 
 export const addRow = ({ commit }) => {
@@ -14,17 +23,21 @@ export const removeRow = ({ commit }) => {
   commit("removeRowMutation");
 };
 
-export const sendData = ({ commit, state }) => {
+export const sendData = ({ commit, dispatch, state }) => {
+  if (state.tableData.length > 0) {
+    commit("prepareData");
   axios
-    .post("http://localhost:8080/entries/create", {
-      entryData: JSON.stringify(new postEntry(state.tableData))
+    .post(API.registerEntries, {
+      entryData: JSON.stringify(state.preparedData)
     })
     .then(res => {
-      console.log(res);
+      commit("regEntry", res);
+      dispatch("fetchData");
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => commit("throwError", err));
+  } else {
+    commit("throwEmptyWarning")
+  }
 };
 
 export const changeColValue = ({ commit }, columnData) => {

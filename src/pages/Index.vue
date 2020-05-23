@@ -47,8 +47,8 @@ export default {
   methods: {
     ...mapActions({ fetchData: "entriesStore/fetchData" })
   },
-  async created() {
-    await this.fetchData();
+  created() {
+    this.fetchData();
   }
 };
 </script>

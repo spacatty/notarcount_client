@@ -1,6 +1,7 @@
 export default function () {
   return {
     appData: [],
-    tableData: []
+    tableData: [],
+    preparedData: null
   }
 }

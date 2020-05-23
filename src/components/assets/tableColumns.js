@@ -1,7 +1,7 @@
 const tableColumns = [
   {
     name: "partnerName",
-    align: "center",
+    align: "left",
     label: "Партнёр",
     field: "partnerName"
   },

@@ -1,16 +1,16 @@
 <template>
   <q-page class="flex flex-center">
-    <documentsChart :item="listAnalytics" />
+    <analyticsChart :item="listAnalytics" />
   </q-page>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import documentsChart from "./analyticsCharts/documentsChart";
+import analyticsChart from "./analyticsCharts/analyticsChart";
 export default {
   name: "analyticsComponent",
   components: {
-    documentsChart
+    analyticsChart
   },
   computed: {
     ...mapGetters({ listAnalytics: "entriesStore/listAnalytics" })

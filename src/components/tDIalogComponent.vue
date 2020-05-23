@@ -5,8 +5,9 @@
         <q-card-section class="flex flex-center justify-around">
           <q-table
             title
-            :data="data"
+            :data="actualDay.entryData.firstData"
             :columns="columns"
+            :visible-columns="visubleColumns"
             row-key="id"
             virtual-scroll
             :pagination.sync="pagination"
@@ -29,7 +30,13 @@ export default {
   data() {
     return {
       columns: tableColumns,
-      data: [],
+      visubleColumns: [
+        "partnerName",
+        "documentsCount",
+        "notariusCost",
+        "translatorCost",
+        "totalAmount"
+      ],
       pagination: {
         rowsPerPage: 0
       }
@@ -41,7 +48,6 @@ export default {
   methods: {
     show() {
       this.$refs.dialog.show();
-      this.drawTable();
     },
     hide() {
       this.$refs.dialog.hide();
@@ -53,9 +59,6 @@ export default {
     onOKClick() {
       this.$emit("ok");
       this.hide();
-    },
-    drawTable() {
-      this.data = this.actualDay.entryData.firstData;
     }
   }
 };

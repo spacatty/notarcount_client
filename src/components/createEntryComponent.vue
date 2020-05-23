@@ -89,7 +89,6 @@
 import { mapGetters, mapActions } from "vuex";
 import tableColumns from "./assets/tableColumns";
 import emptyEntry from "./assets/emptyEntry";
-import tableMethods from "./assets/tableMethods";
 
 export default {
   name: "createEntryComponent",

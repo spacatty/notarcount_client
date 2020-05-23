@@ -17,8 +17,40 @@
           color="red"
           text-color="white"
           icon="remove"
-          :label="item.weekExpense"
-        />
+          :label="item.weekExpense.total"
+        >
+          <q-tooltip
+            content-class="bg-white"
+            anchor="bottom middle"
+            self="top middle"
+            :offset="[10, 10]"
+          >
+            <q-chip
+              outline
+              square
+              color="red"
+              text-color="white"
+              icon="directions_bike"
+              :label="item.weekExpense.courier"
+            />
+            <q-chip
+              outline
+              square
+              color="red"
+              text-color="white"
+              icon="storefront"
+              :label="item.weekExpense.seller"
+            />
+            <q-chip
+              outline
+              square
+              color="red"
+              text-color="white"
+              icon="emoji_people"
+              :label="item.weekExpense.manager"
+            />
+          </q-tooltip>
+        </q-chip>
         <q-chip
           outline
           square
@@ -28,7 +60,7 @@
           :label="item.weekRevenue"
         />
         <q-list dense bordered padding class="q-mt-md rounded-borders full-width">
-          <q-item v-for="day in days" :key="day.id">
+          <q-item v-for="day in item.weekEntryData" :key="day.id">
             <q-item-section class="flex flex-center" avatar>
               <q-fab
                 icon="keyboard_arrow_right"
@@ -42,7 +74,7 @@
                   class="flex flex-center q-ml-sm"
                   style="width: 48px"
                   color="red"
-                >{{day.entryData.totalData[0].totalCount}}</q-badge>
+                >{{day.entryData.totalData[0].totalIncome}}</q-badge>
                 <q-badge
                   outline
                   class="flex flex-center q-ml-sm"
@@ -54,7 +86,7 @@
                   class="flex flex-center q-ml-sm"
                   style="width: 48px"
                   color="green"
-                >{{day.entryData.totalData[0].totalIncome}}</q-badge>
+                >{{day.entryData.totalData[0].totalCount}}</q-badge>
               </q-fab>
             </q-item-section>
             <q-item-section></q-item-section>
@@ -69,9 +101,9 @@
             </q-item-section>
           </q-item>
         </q-list>
-      <q-card-actions align="center">
-        <q-btn flat color="primary" label="OK" @click="onOKClick" />
-      </q-card-actions>
+        <q-card-actions align="center">
+          <q-btn flat color="primary" label="OK" @click="onOKClick" />
+        </q-card-actions>
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -84,18 +116,12 @@ import formatedDate from "./assets/formatDate";
 export default {
   name: "wDialogComponent",
   components: { tDialogComponent },
-  data() {
-    return {
-      days: []
-    };
-  },
   props: {
     item: Object
   },
   methods: {
     show() {
       this.$refs.dialog.show();
-      this.setState();
     },
     hide() {
       this.$refs.dialog.hide();
@@ -107,9 +133,6 @@ export default {
     onOKClick() {
       this.$emit("ok");
       this.hide();
-    },
-    setState() {
-      this.days = this.item.weekEntryData;
     },
     showDay(actualDay) {
       this.$q.dialog({
