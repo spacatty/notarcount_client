@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated flat class="bg-transparent text-white flex flex-center" style="height: 10vh">
+    <q-header elevated flat class="q-pa-md bg-transparent text-white flex flex-center">
       <q-tabs v-model="tab" narrow-indicator dense align="center" class="text-purple">
         <q-tab :ripple="{ color: 'orange' }" name="createEntry" icon="create" label="Создание" />
         <q-tab :ripple="{ color: 'orange' }" name="checkEntries" icon="check" label="Просмотр" />

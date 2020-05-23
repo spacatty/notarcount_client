@@ -1,9 +1,9 @@
 <template>
   <q-dialog ref="dialog" @hide="onDialogHide">
-    <div class="flex flex-center full-width">
-      <q-card class="q-dialog-plugin q-pt-md fit">
-        <q-card-section class="flex flex-center justify-around">
+      <q-card class="q-dialog-plugin">
+        <q-card-section class="flex flex-center q-pa-md">
           <q-table
+          grid
             title
             :data="actualDay.entryData.firstData"
             :columns="columns"
@@ -18,7 +18,6 @@
           <q-btn flat color="primary" label="OK" @click="onOKClick" />
         </q-card-actions>
       </q-card>
-    </div>
   </q-dialog>
 </template>
 

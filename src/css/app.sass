@@ -1,10 +1,22 @@
 .statsVirtualScroll
-    height: 60vh
-    width: 40vw
+    max-height: 60vh
+    min-width: 40vw
+    @media screen and (max-width: 940px)
+        min-width: 60vw
+    @media screen and (max-width: 640px)
+        min-width: 70vw
+    @media screen and (max-width: 540px)
+        min-width: 80vw
+    @media screen and (max-width: 440px)
+        min-width: 100vw
 
 .createEntryTable
-    height: 60vh
-    width: 60vw
+    min-height: 70vh
+    min-width: 80vw
 
 .addEntryChip
     min-width: 50%
+    
+.entrySelect
+    width: 70%
+    height: 50%

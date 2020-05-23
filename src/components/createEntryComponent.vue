@@ -25,15 +25,16 @@
         <q-btn color="primary" flat icon="send" :disable="loading" @click="sendData" />
       </template>
       <template v-slot:item="props">
-        <div class="col-xs-6 q-pa-xs items-center justify-evenly">
-          <q-card class="q-pa-lg bg-grey-1">
+        <div :class="$q.screen.width > 830? 'fit col q-pa-md' : 'fit'">
+          <q-card class="bg-grey-1 flex flex-center">
             <q-list dense>
               <q-item v-for="col in props.cols" :key="col.name">
-                <q-item-section>
+                <q-item-section class="flex flex-center">
                   <div
-                    v-if="col.name === 'courierCost' || col.name === 'manager' || col.name === 'seller' "
+                    v-if="col.name === 'courierCost' || col.name === 'manager' || col.name === 'seller'"
                   >
                     <q-select
+                      class="entrySelect flex"
                       :label="col.label"
                       color="dark"
                       :value="props.row[`${col.name}`]"
@@ -41,7 +42,6 @@
                       use-input
                       use-chips
                       hide-dropdown-icon
-                      input-debounce="0"
                       new-value-mode="add"
                     >
                       <template v-slot:selected>
@@ -55,6 +55,7 @@
                   </div>
                   <div v-else>
                     <q-select
+                      class="entrySelect flex"
                       :label="col.label"
                       color="dark"
                       :value="props.row[`${col.name}`]"
@@ -62,7 +63,6 @@
                       use-input
                       use-chips
                       hide-dropdown-icon
-                      input-debounce="0"
                       new-value-mode="add"
                     >
                       <template v-slot:selected>
@@ -75,7 +75,6 @@
                     </q-select>
                   </div>
                 </q-item-section>
-                <q-item-section side></q-item-section>
               </q-item>
             </q-list>
           </q-card>
@@ -100,7 +99,7 @@ export default {
       loading: false,
       columns: tableColumns,
       pagination: {
-        rowsPerPage: 2
+        rowsPerPage: this.$q.screen.width <= 830 ? 1 : 2
       }
     };
   },

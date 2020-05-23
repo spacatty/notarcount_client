@@ -13,7 +13,7 @@ export const setData = (state, data) => {
 
 export const addRowMutation = state => {
   const rowIndex = state.tableData.length + 1;
-  const actualRow = emptyEntry(`Партнёр ${rowIndex}`);
+  const actualRow = emptyEntry(`>`);
   state.tableData = [
     ...state.tableData.slice(0, rowIndex),
     actualRow,
