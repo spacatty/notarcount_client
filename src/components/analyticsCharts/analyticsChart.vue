@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-center" style="height: 50vh">
-    <VueApexCharts height="100%" :options="options" :series="series" />
+  <div class="flex flex-center">
+    <VueApexCharts :options="options" :series="series" />
   </div>
 </template>
 
