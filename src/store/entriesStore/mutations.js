@@ -27,8 +27,12 @@ export const removeRowMutation = state => {
 };
 
 export const changeColValueMutation = (state, columnData) => {
-  state.tableData[columnData.rowIndex][columnData.colName] =
-    columnData.newValue;
+  columnData.colName === "partnerName"
+    ? (state.tableData[columnData.rowIndex][columnData.colName] =
+        columnData.newValue)
+    : (state.tableData[columnData.rowIndex][columnData.colName] = parseInt(
+        columnData.newValue
+      ));
 };
 
 export const prepareData = state => {
