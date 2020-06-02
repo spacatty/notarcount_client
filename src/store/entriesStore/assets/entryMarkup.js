@@ -1,7 +1,12 @@
 const createLocalData = data => {
   let FD = [];
   data.forEach(client => {
-    client.totalExpense = client.translatorCost + client.notariusCost;
+    client.totalExpense =
+      client.translatorCost +
+      client.notariusCost +
+      client.courierCost +
+      client.seller +
+      courier.manager;
     client.revenueAmount = client.totalAmount - client.totalExpense;
     FD.push(client);
   });
