@@ -12,13 +12,16 @@
             />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ fmt(item.periodFrom) }}</q-item-label>
-            <q-item-label caption lines="1">{{ fmt(item.periodTill) }}</q-item-label>
+            <q-item-label>{{ item.periodFrom.fullDate }}</q-item-label>
+            <q-item-label
+              caption
+              lines="1"
+            >{{ typeof item.periodTill === "string" ? item.periodTill : item.periodTill.fullDate }}</q-item-label>
           </q-item-section>
           <q-item-section avatar>
             <q-fab color="primary" icon="keyboard_arrow_left" direction="left" flat>
               <q-fab-action color="primary" @click="showWeeks(item)" icon="search" flat />
-              <q-badge floating color="green" transparent :label="item.weekDocuments" />
+              <q-badge floating color="green" transparent :label="item.weekStats.weekDocuments" />
               <q-fab-action color="primary" @click="showAnalytics(item)" icon="show_chart" flat />
             </q-fab>
           </q-item-section>
@@ -32,7 +35,6 @@
 import { mapGetters } from "vuex";
 import wDialogComponentVue from "./wDialogComponent.vue";
 import aDialogComponentVue from "./aDialogComponent.vue";
-import formatedDate from "./assets/formatDate";
 
 export default {
   name: "statsComponent",
@@ -61,9 +63,6 @@ export default {
         parent: this,
         item
       });
-    },
-    fmt(item) {
-      return new formatedDate(item).fullDate;
     }
   }
 };

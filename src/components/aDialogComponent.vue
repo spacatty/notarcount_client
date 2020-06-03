@@ -10,7 +10,6 @@
 
 <script>
 import VueApexCharts from "vue-apexcharts";
-import formatedDate from './assets/formatDate'
 
 export default {
   name: "aDialogComponent",
@@ -63,12 +62,8 @@ export default {
     },
     setData() {
       this.item.weekEntryData.forEach(actualDay => {
-        this.options.xaxis.categories.push(
-          new formatedDate(actualDay.createdAt).dayMonthCap
-        );
-        this.series[0].data.push(
-          actualDay.entryData.totalData[0].documentsCount
-        );
+        this.options.xaxis.categories.push(actualDay.createdAt.dayMonthCap);
+        this.series[0].data.push(actualDay.dayStats.dayDocuments);
       });
     }
   }

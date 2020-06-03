@@ -28,7 +28,7 @@ export const sendData = ({ commit, dispatch, state }) => {
     commit("prepareData");
   axios
     .post(API.registerEntries, {
-      entryData: JSON.stringify(state.preparedData)
+      entryData: state.preparedData
     })
     .then(res => {
       commit("regEntry", res);

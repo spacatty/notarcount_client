@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import formatedDate from "../assets/formatDate";
 import VueApexCharts from "vue-apexcharts";
 
 export default {
@@ -69,9 +68,7 @@ export default {
     item: Object
   },
   created() {
-    this.options.xaxis.categories = this.item.WK.map(
-      x => new formatedDate(x).fullDate
-    );
+    this.options.xaxis.categories = this.item.WK.map(x => x.fullDate);
     this.series[0].data = this.item.WD;
     this.series[1].data = this.item.WI;
     this.series[2].data = this.item.WE;
